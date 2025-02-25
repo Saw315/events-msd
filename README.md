@@ -51,13 +51,6 @@ This page will automatically display all upcoming events along with a Google Map
 
 ### **Root Theme Folder (msd-events/)**
 
-This contains the main theme files, including:
-
-- `functions.php` – Loads theme features and dependencies.
-- `style.css` – The main stylesheet.
-- `theme.json` – Defines WordPress global styles and settings.
-- `page-upcoming-events.php` – Template for displaying upcoming events.
-
 ### **`assets/` - Theme Assets**
 
 This folder contains compiled and source assets.
@@ -89,33 +82,44 @@ src/
 
 Contains additional page templates (currently `template-events.php`).
 
----
+## **DDEV Setup**
 
-## Development Notes
+To set up a local development environment using DDEV, follow these steps:
 
-### **Build System (SCSS & JS)**
+### **Step 1: Install DDEV**
 
-The theme uses **Webpack** for JavaScript and SCSS compilation.
+Ensure you have DDEV installed on your system. You can install it by following the official
+guide: [DDEV Installation](https://ddev.readthedocs.io/en/stable/)
 
-#### **Install Dependencies**
+### **Step 2: Initialize a New DDEV Project**
 
-Run the following command inside the theme folder:
+Run the following commands inside your WordPress project directory:
 
-```
-npm install
-```
-
-#### **Compile SCSS & JS**
-
-```
-npm run build
+```sh
+ddev config --project-name=msd-events --docroot=public --php-version=8.1 --project-type=wordpress
+ddev start
 ```
 
-To watch for changes and auto-compile:
+### **Step 3: Install WordPress**
 
+Once DDEV is running, install WordPress by running:
+
+```sh
+ddev wp core install --url=https://msd-events.ddev.site --title="MSD Events" --admin_user=admin --admin_password=admin --admin_email=admin@example.com
 ```
-npm run watch
+
+### **Step 4: Import an Existing Database (Optional)**
+
+If you have an existing WordPress database, import it using:
+
+```sh
+ddev import-db --src=path-to-database.sql
 ```
+
+### **Step 5: Access the Development Site**
+
+- Open `https://msd-events.ddev.site` in your browser.
+- Log in at `https://msd-events.ddev.site/wp-admin` using the admin credentials.
 
 ---
 
