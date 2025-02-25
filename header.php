@@ -9,9 +9,9 @@
 <body <?php body_class(); ?>>
 
 <header class="msd-header">
-    <div class="msd-header__logo">
+    <a class="msd-header__logo" href="<?= bloginfo( 'url' ); ?>">
         <img src="<?= get_template_directory_uri(); ?>/assets/img/msd-logo.svg" alt="">
-    </div>
+    </a>
     <nav>
 		<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
     </nav>
