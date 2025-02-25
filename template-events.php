@@ -27,7 +27,7 @@ if ( false === $cached_events ) {
 	] );
 
 	// Store query results in cache for 1 hour
-	set_transient( $cache_key, $events, HOUR_IN_SECONDS );
+	set_transient( $cache_key, $events, MINUTE_IN_SECONDS );
 } else {
 	$events = $cached_events;
 }
