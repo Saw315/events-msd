@@ -1,0 +1,102 @@
+:root {
+    --container-width: 1440px;
+    --default-gap: 16px;
+    --colorTextPrimary: #000000;
+    --colorPrimary: #00857C;
+    --colorPrimaryLight: #6ECEB2;
+    --colorPrimaryDark: #005C55;
+    --colorPrimaryDarkBlue: #0C2340;
+    --colorSecondaryLime: #BFED33;
+    --colorSecondaryLemon: #FFF063;
+    --colorSecondaryPastelBlue: #69B8F7;
+    --colorSecondaryVistaBlue: #688CE8;
+    --colorSecondaryRichBlue: #5450E4;
+    --colorBlack: #000000;
+    --colorWhite: #FFFFFF;
+    --colorOffWhite: #F7F7F7;
+    --colorGray: #757575;
+    --colorWarning: #FE0000;
+    --colorSuccess: #029A01;
+    --colorInfo: #1058A4;
+    --colorGrayHRTwenty: #75757533;
+    --colorGrayHRTen: #7575751a;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5em;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+main, header, footer {
+    max-width: var(--container-width);
+    margin: auto;
+    padding: 0 var(--default-gap);
+}
+
+main {
+    padding: 64px var(--default-gap);
+}
+
+footer {
+    border-top: 1px solid #ddd;
+    padding: 32px 0;
+    text-align: center;
+}
+
+.msd-header {
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--default-gap);
+}
+
+.msd-header img {
+    max-height: 80px;
+}
+
+.msd-header nav ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    gap: var(--default-gap);
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    height: auto;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.button:after, .button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--colorPrimary);
+    -webkit-transition: .4s;
+    transition: .4s;
+    z-index: -2;
+}
+
+.button:before {
+    width: 0;
+    background-color: var(--colorPrimaryDark);
+    z-index: -1;
+}
+
+.button:hover:before {
+    width: 100%;
+}

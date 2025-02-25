@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=window.wp.blocks,s=window.wp.blockEditor,n=JSON.parse('{"UU":"msd-events/event-submission"}'),i=window.ReactJSXRuntime;(0,e.registerBlockType)(n.UU,{edit:()=>(0,i.jsx)("div",{...(0,s.useBlockProps)(),children:(0,i.jsx)("p",{children:"Event Submission Form (Rendered on Frontend)"})}),save:()=>null})})();

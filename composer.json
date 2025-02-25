@@ -1,0 +1,11 @@
+{
+    "name": "danielkoch/msd-events",
+    "description": "Custom WordPress theme for event management.",
+    "type": "wordpress-theme",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MSDEvents\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "apiVersion": 2,
+  "name": "msd-events/event-submission",
+  "title": "Event Submission Form",
+  "category": "widgets",
+  "icon": "calendar",
+  "description": "A form to submit new events.",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "script": "file:./event-form.js"
+}
