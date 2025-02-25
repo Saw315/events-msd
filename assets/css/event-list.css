@@ -2,10 +2,6 @@
     margin-bottom: 32px;
 }
 
-.msd-events__content {
-    display: grid;
-}
-
 .msd-events__item__title {
     font-weight: 700;
     font-size: 20px;
@@ -17,5 +13,24 @@
 
 .msd-events__item--hl {
     background: #f2f2f2;
+}
+
+.msd-events__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--default-gap);
+    margin-top: 32px;
+}
+
+@media screen and (max-width: 980px) {
+    .msd-events__content {
+        grid-template-columns: 2fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .msd-events__content {
+        grid-template-columns: 1fr;
+    }
 }
 
