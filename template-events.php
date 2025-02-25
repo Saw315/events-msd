@@ -5,6 +5,33 @@
 
 get_header();
 
+$cache_key     = 'msd_upcoming_events';
+$cached_events = get_transient( $cache_key );
+
+if ( false === $cached_events ) {
+	$today  = date( 'Ymd' );
+	$events = new WP_Query( [
+		'post_type'      => 'event',
+		'posts_per_page' => 10,
+		'meta_key'       => '_event_date',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
+		'meta_query'     => [
+			[
+				'key'     => '_event_date',
+				'compare' => '>=',
+				'value'   => $today,
+				'type'    => 'DATE',
+			],
+		],
+	] );
+
+	// Store query results in cache for 1 hour
+	set_transient( $cache_key, $events, HOUR_IN_SECONDS );
+} else {
+	$events = $cached_events;
+}
+
 ?>
     <main class="msd-events">
         <h1><?php _e( 'Upcoming Events', 'msd-events' ); ?></h1>
@@ -12,23 +39,6 @@ get_header();
             <div id="map"></div>
             <div class="msd-events__content">
 				<?php
-				$today  = date( 'Ymd' );
-				$events = new WP_Query( [
-					'post_type'      => 'event',
-					'posts_per_page' => 10,
-					'meta_key'       => '_event_date',
-					'orderby'        => 'meta_value',
-					'order'          => 'ASC',
-					'meta_query'     => [
-						[
-							'key'     => '_event_date',
-							'compare' => '>=',
-							'value'   => $today,
-							'type'    => 'DATE',
-						],
-					],
-				] );
-
 				if ( $events->have_posts() ) :
 					while ( $events->have_posts() ) : $events->the_post();
 						$event_id       = get_the_ID();
