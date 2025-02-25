@@ -44,12 +44,16 @@ class Frontend {
 		);
 
 		if ( is_page_template( 'template-events.php' ) ) {
+
 			wp_enqueue_script(
 				'google-maps-api',
-				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( GOOGLE_MAPS_API_KEY ) . '&callback=initMap',
+				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( GOOGLE_MAPS_API_KEY ) . '&callback=initMap&libraries=marker',
 				[],
 				null,
-				true
+				array(
+					'in_footer' => true,
+					'strategy'  => 'defer',
+				)
 			);
 
 			wp_enqueue_script(

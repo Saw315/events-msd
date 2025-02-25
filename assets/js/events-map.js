@@ -1,33 +1,18 @@
-function initMap() {
-    const mapElement = document.getElementById("map");
+document.addEventListener("DOMContentLoaded", function (event) {
 
-    if (!mapElement) {
-        return;
+    function initMap() {
+        const myLatLng = {lat: -25.363, lng: 131.044};
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: myLatLng,
+        });
+
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello World!",
+        });
     }
 
-    const map = new google.maps.Map(mapElement, {
-        center: {lat: 50.0755, lng: 14.4378}, // Default center (Prague)
-        zoom: 8,
-    });
-
-    document.querySelectorAll(".event-map").forEach((eventMap) => {
-        const lat = parseFloat(eventMap.getAttribute("data-lat"));
-        const lng = parseFloat(eventMap.getAttribute("data-lng"));
-
-        if (!isNaN(lat) && !isNaN(lng)) {
-            new google.maps.Marker({
-                position: {lat, lng},
-                map: map,
-                title: "Event Location",
-            });
-
-            map.setCenter({lat, lng});
-        }
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    if (typeof google !== "undefined") {
-        initMap();
-    }
+    window.initMap = initMap;
 });
