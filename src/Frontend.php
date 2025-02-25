@@ -24,6 +24,9 @@ class Frontend {
 	 * Enqueues the main CSS file (msd.css).
 	 */
 	public static function enqueue_styles() {
+
+		$google_api_key = get_option( 'msd_google_maps_api_key', '' );
+
 		wp_enqueue_style(
 			'msd-main-style',
 			get_template_directory_uri() . '/assets/css/msd.css',
@@ -47,7 +50,7 @@ class Frontend {
 
 			wp_enqueue_script(
 				'google-maps-api',
-				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( GOOGLE_MAPS_API_KEY ) . '&callback=initMap&libraries=marker',
+				'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( $google_api_key ) . '&callback=initMap&libraries=marker',
 				[],
 				null,
 				array(

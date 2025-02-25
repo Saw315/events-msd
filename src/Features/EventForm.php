@@ -14,9 +14,11 @@ class EventForm {
 	}
 
 	private static function enqueue_scripts() {
+		$google_api_key = get_option( 'msd_google_maps_api_key', '' );
+
 		wp_enqueue_script(
 			'google-maps-api',
-			'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( GOOGLE_MAPS_API_KEY ) . '&libraries=places',
+			'https://maps.googleapis.com/maps/api/js?key=' . esc_attr( $google_api_key ) . '&libraries=places',
 			[],
 			null,
 			true
