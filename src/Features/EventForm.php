@@ -34,6 +34,7 @@ class EventForm {
 
 		wp_localize_script( 'msd-event-form', 'msdEventFormData', [
 			'ajax_url' => esc_url( rest_url( 'msd-events/v1/submit-event' ) ),
+			'nonce'    => wp_create_nonce( 'wp_rest' ),
 		] );
 	}
 

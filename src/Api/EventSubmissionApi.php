@@ -11,17 +11,20 @@ class EventSubmissionApi {
 		register_rest_route( 'msd-events/v1', '/submit-event', [
 			'methods'             => 'POST',
 			'callback'            => [ self::class, 'handle_event_submission' ],
-			'permission_callback' => '__return_true', // Allow public access
+			'permission_callback' => [ self::class, 'validate_nonce' ],
 		] );
 	}
 
-	public static function handle_event_submission( $request ) {
-		//$nonce = $request->get_header('X-WP-Nonce');
+	public static function validate_nonce( $request ) {
+		$nonce = $request->get_header( 'X-WP-Nonce' );
+		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+			return new \WP_Error( 'rest_forbidden', __( 'Invalid nonce' ), [ 'status' => 403 ] );
+		}
 
-		// Only check nonce for logged-in users
-		/*if (is_user_logged_in() && (!$nonce || !wp_verify_nonce($nonce, 'msd_event_submission'))) {
-			return new \WP_Error('nonce_verification_failed', __('Security check failed', 'msd-events'), ['status' => 403]);
-		}*/
+		return true;
+	}
+
+	public static function handle_event_submission( $request ) {
 
 		// Get the JSON parameters
 		$params            = $request->get_json_params();

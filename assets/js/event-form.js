@@ -91,12 +91,13 @@ class EventForm {
             event_longitude: formData.get("event_longitude"),
         };
 
-        const headers = {"Content-Type": "application/json"};
-
         try {
             const response = await fetch(msdEventFormData.ajax_url, {
                 method: "POST",
-                headers: headers,
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-WP-Nonce": msdEventFormData.nonce,
+                },
                 body: JSON.stringify(data),
             });
 
